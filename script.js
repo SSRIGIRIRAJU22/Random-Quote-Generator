@@ -41,8 +41,13 @@ getQuote()
 btnEl.addEventListener("click", getQuote);
 
 volumeEl.addEventListener("click", () => {
+    volumeEl.classList.add("active");
     const speechText = new SpeechSynthesisUtterance(quoteContent);
     window.speechSynthesis.speak(speechText);
+
+    speechText.onend = function() {
+        volumeEl.classList.remove("active");
+    }
 });
 
 copyEl.addEventListener("click", () => {
